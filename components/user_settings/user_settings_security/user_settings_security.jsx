@@ -634,6 +634,7 @@ export default class SecurityTab extends React.Component {
         if (this.props.activeSection === 'signin') {
             let emailOption;
             let gitlabOption;
+            let ADFSOption;
             let googleOption;
             let office365Option;
             let ldapOption;
@@ -656,6 +657,23 @@ export default class SecurityTab extends React.Component {
                         </div>
                     );
                 }
+                
+                if (global.window.mm_config.EnableSignUpWithADFS === 'true' && user.auth_service === '') {
+                    ADFSOption = (
+                        <div>
+                            <Link
+                                className='btn btn-primary'
+                                to={'/claim/email_to_oauth?email=' + encodeURIComponent(user.email) + '&old_type=' + user.auth_service + '&new_type=' + Constants.ADFS_SERVICE}
+                            >
+                                <FormattedMessage
+                                    id='user.settings.security.switchADFS'
+                                    defaultMessage='Switch to using ADFS SSO'
+                                />
+                            </Link>
+                            <br/>
+                        </div>
+                    );
+                }                
 
                 if (global.window.mm_config.EnableSignUpWithGoogle === 'true') {
                     googleOption = (
@@ -757,6 +775,7 @@ export default class SecurityTab extends React.Component {
                     {office365Option}
                     {ldapOption}
                     {samlOption}
+                    {ADFSOption}
                 </div>
             );
 
@@ -801,6 +820,13 @@ export default class SecurityTab extends React.Component {
                 <FormattedMessage
                     id='user.settings.security.gitlab'
                     defaultMessage='GitLab'
+                />
+            );
+        } else if (this.props.user.auth_service === Constants.ADFS_SERVICE) {
+            describe = (
+                <FormattedMessage
+                    id='user.settings.security.adfs'
+                    defaultMessage='ADFS SSO'
                 />
             );
         } else if (this.props.user.auth_service === Constants.GOOGLE_SERVICE) {
@@ -1434,6 +1460,7 @@ export default class SecurityTab extends React.Component {
         numMethods = config.EnableSignUpWithGoogle === 'true' ? numMethods + 1 : numMethods;
         numMethods = config.EnableLdap === 'true' ? numMethods + 1 : numMethods;
         numMethods = config.EnableSaml === 'true' ? numMethods + 1 : numMethods;
+        numMethods = config.EnableSignUpWithADFS === 'true' ? numMethods + 1 : numMethods;
 
         // If there are other sign-in methods and either email is enabled or the user's account is email, then allow switching
         let signInSection;

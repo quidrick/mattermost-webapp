@@ -502,6 +502,15 @@ export default class AdminSidebar extends React.Component {
                                     }
                                 />
                                 {oauthSettings}
+                                <AdminSidebarSection
+                                    name='adfs'
+                                    title={
+                                        <FormattedMessage
+                                            id='admin.sidebar.adfs'
+                                            defaultMessage='ADFS'
+                                        />
+                                    }
+                                />
                                 {ldapSettings}
                                 {samlSettings}
                                 {mfaSettings}

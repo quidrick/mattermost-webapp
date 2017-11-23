@@ -23,6 +23,7 @@ import EmailAuthenticationSettings from 'components/admin_console/email_authenti
 import EmailSettings from 'components/admin_console/email_settings.jsx';
 import ExternalServiceSettings from 'components/admin_console/external_service_settings.jsx';
 import GitLabSettings from 'components/admin_console/gitlab_settings.jsx';
+import ADFSSettings from 'components/admin_console/adfs_settings.jsx';
 import LdapSettings from 'components/admin_console/ldap_settings.jsx';
 import LegalAndSupportSettings from 'components/admin_console/legal_and_support_settings.jsx';
 import LicenseSettings from 'components/admin_console/license_settings.jsx';
@@ -101,6 +102,11 @@ export default (
                 path='gitlab'
                 component={GitLabSettings}
             />
+            <Route
+                path='adfs'
+                component={ADFSSettings}
+            />
+
             <Route
                 path='oauth'
                 component={OAuthSettings}
