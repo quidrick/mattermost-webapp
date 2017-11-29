@@ -1,3 +1,7 @@
+Modified version of Mattermost 4.x, patched with support of Microsoft ADFS 3.0 SSO 
+
+Based on [Luben Kirov work](https://github.com/lubenk/platform)
+
 # Mattermost
 
 Mattermost is an open source, self-hosted Slack-alternative from [https://mattermost.org](https://mattermost.org).
